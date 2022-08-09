@@ -1,6 +1,10 @@
 name = "GeneratedExpressions"
 uuid = "84d730a5-1eb9-4187-a799-27dd07f33a14"
-version = "0.9.1"
+version = "0.1.0"
 
 [deps]
 MacroTools = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
+
+[compat]
+julia = "1.6"
+MacroTools = "0.5.9"
