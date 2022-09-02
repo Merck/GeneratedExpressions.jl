@@ -1,12 +1,24 @@
-# GeneratedExpressions.jl
+# GeneratedExpressions.jl: <br> Expression Comprehensions in Julia
+
+<p align="center">
+  <a href="#about">About</a> |
+  <a href="#context-value-dynamics">Context</a> |
+  <a href="#features">Features</a> |
+  <a href="#showcase">Showcase</a> |
+  <a href="#documentation">Documentation</a>
+</p>
+
+## About
 
 The package implements a metalanguage to support code-less expression comprehensions in Julia. 
 
-In particular, the package provides a convenient proxy (inspired by mustache.js's notation) which takes an expression (string, alternatively), interpolates the $s in the expressions from ranges provided at the input, and then amalgamates the generated expressions into a block, a tuple, etc. 
-
-This package was created as an integral part of a larger dynamical modeling system wherein a model specification can be declared compactly, in a high-level, symbolic language (alike Catalyst.jl's reactions). However, the package can be used on its own, independently of the larger system.
+In particular, we provide a convenient proxy (inspired by mustache.js's notation) which takes an expression (string, alternatively), interpolates the $s in the expressions from ranges provided at the input, and then amalgamates the generated expressions into a block, a tuple, etc. 
 
 It is possible to retrieve the generated expression (function `generate`) or to evaluate the expression in the caller's scope on the fly (macro `@generate`, `@fileval`).
+
+## Context: Value Dynamics
+
+This package was created as an integral part of [Value Dynamics](https://github.com/Merck/DyVE) project. The Value Dynamics project implements a larger dynamical modeling system wherein a model specification can be declared compactly, in a high-level, symbolic language (alike Catalyst.jl's reactions). However, this package can be used on its own, independently of the larger system.
 
 ## Features
 
@@ -18,7 +30,7 @@ Note that in the above process, the substitution happens at the expression level
 
 In addition, both function and macro forms accept top-level generation opts: you may 1) provide singular substitution ranges with global effect (interpolates corresponding `$sym`s within the expression at the input) and 2) evaluate the macros before returning the expression (the usecase is bound to the function form).
 
-## Examples
+## Showcase
 
 ### Function form: retrieve generated expression
 

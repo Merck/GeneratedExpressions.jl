@@ -9,3 +9,5 @@ Third party software listed by License type
 MIT License (or adaptations) (https://www.opensource.org/licenses/MIT)
   * The Julia Language - https://github.com/JuliaLang/julia/blob/master/LICENSE.md
   * MacroTools.jl - https://github.com/FluxML/MacroTools.jl/blob/master/LICENSE.md
+  * Documenter.jl - https://github.com/JuliaDocs/Documenter.jl/blob/master/LICENSE.md
+  * DocumenterMarkdown.jl - https://github.com/JuliaDocs/DocumenterMarkdown.jl/blob/master/LICENSE.md
