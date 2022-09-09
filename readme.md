@@ -16,9 +16,9 @@ In particular, we provide a convenient proxy (inspired by mustache.js's notation
 
 It is possible to retrieve the generated expression (function `generate`) or to evaluate the expression in the caller's scope on the fly (macro `@generate`, `@fileval`).
 
-## Context: Value Dynamics
+## Context: ValueDynamics
 
-This package was created as an integral part of [Value Dynamics](https://github.com/Merck/DyVE) project. The Value Dynamics project implements a larger dynamical modeling system wherein a model specification can be declared compactly, in a high-level, symbolic language (alike Catalyst.jl's reactions). However, this package can be used on its own, independently of the larger system.
+This package was created as an integral part of the [ValueDynamics](https://github.com/Merck/ReactionDynamics.jl) project, which is a vertically-integrated computational framework for learning, designing, integrating, simulating, and optimizing R&D process models, to better inform strategic decisions in science and business. However, this package can be used on its own, independently of the larger framework.
 
 ## Features
 
