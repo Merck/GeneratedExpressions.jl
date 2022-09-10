@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="#about">About</a> |
-  <a href="#context-value-dynamics">Context</a> |
+  <a href="#context-reactivedynamics">Context</a> |
   <a href="#features">Features</a> |
   <a href="#showcase">Showcase</a> |
   <a href="#documentation">Documentation</a>
@@ -16,9 +16,9 @@ In particular, we provide a convenient proxy (inspired by mustache.js's notation
 
 It is possible to retrieve the generated expression (function `generate`) or to evaluate the expression in the caller's scope on the fly (macro `@generate`, `@fileval`).
 
-## Context: ValueDynamics
+## Context: ReactiveDynamics
 
-This package was created as an integral part of the [ValueDynamics](https://github.com/Merck/ReactionDynamics.jl) project, which is a vertically-integrated computational framework for learning, designing, integrating, simulating, and optimizing R&D process models, to better inform strategic decisions in science and business. However, this package can be used on its own, independently of the larger framework.
+This package was created as an integral part of the [ReactiveDynamics](https://github.com/Merck/ReactiveDynamics.jl) project, which is a vertically-integrated computational framework for learning, designing, integrating, simulating, and optimizing R&D process models, to better inform strategic decisions in science and business. However, this package can be used on its own, independently of the larger framework.
 
 ## Features
 
