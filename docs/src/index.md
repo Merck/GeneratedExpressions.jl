@@ -1,4 +1,4 @@
-# GeneratedExpressions.jl Documentation
+# API Documentation
 
 ```@autodocs
 Modules = [GeneratedExpressions]

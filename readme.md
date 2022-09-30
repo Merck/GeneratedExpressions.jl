@@ -5,7 +5,7 @@
   <a href="#context-reactivedynamics">Context</a> |
   <a href="#features">Features</a> |
   <a href="#showcase">Showcase</a> |
-  <a href="#documentation">Documentation</a>
+  <a href="https://merck.github.io/GeneratedExpressions.jl/">Documentation</a>
 </p>
 
 ## About
@@ -34,102 +34,85 @@ In addition, both function and macro forms accept top-level generation opts: you
 
 ### Function form: retrieve generated expression
 
-```julia
+
+```julia-repl
 julia> generate("{\$a+\$b, a=1:2, b=1:2}") |> println
 1+1
 1+2
 2+1
 2+2
+```
 
+
+```julia-repl
 julia> generate("{\$a+\$b, a=1:2, b=1:2, zip=true}") |> println
 1+1
 2+2
+```
 
+
+```julia-repl
 julia> generate("{<\$a+{\$b, b=1:\$a, dlm=+}>, a=1:2}") |> println
 1+1
 2+1+2
+```
 
+
+```julia-repl
 julia> generate("{<\$a+{<\$b+{\$c, c=1:(\$a+\$b), dlm=+}>, b=1:\$a, dlm=+}>, a=1:2}") |> println
 1+1+1+2
 2+1+1+2+3+2+1+2+3+4
+```
 
+
+```julia-repl
 julia> generate("""{\$a, a=["str_\$c" for c in 1:2], dlm=" "}""") |> println
-"str_1 str_2"
+str_1 str_2
 ```
 
 ### Macro form: evaluate generated expression
 
-```julia
-julia> @generate {$a+$b, a=1:3, b=1:2, zip=true, dlm=+}
-75
 
+```julia-repl
+julia> @generate {$a+$b, a=1:3, b=1:2, zip=true, dlm=+}
+6
+```
+
+
+```julia-repl
 julia> @generate {$a+$b, a=1:3, b=1:$a, dlm=+}
 24
+```
 
-julia> N=2; @generate "{<\$a+\$b+\$r>, a=1:3, b=1:\$a, r=N, dlm=+}" 
+
+```julia-repl
+julia> N=2; @generate "{<\$a+\$b+\$r>, a=1:3, b=1:\$a, r=N, dlm=+}"
 36
+```
 
+
+```julia-repl
 julia> a=b=c=1; @generate("{<\$[a,b,c]>, dlm=+}")
 3
+```
 
+
+```julia-repl
 julia> write("file_expr.jl", """{println(\$your_name, ", that is ", \$name), name=["bot_\$i" for i in 1:2]}""")
+72
+
 julia> @fileval file_expr.jl your_name="myself"
-"""
 myself, that is bot_1
 myself, that is bot_2
-"""
+```
 
+
+```julia-repl
 julia> write("file_string.jl", """{<println("\$your_name, that is \$name")>, name=["bot_\$i" for i in 1:2]}""")
+70
+
 julia> @fileval file_string.jl mode=string your_name="myself"
-"""
 myself, that is bot_1
 myself, that is bot_2
-"""
 ```
 
-## Documentation
-
-### `GeneratedExpressions.@generate` — _Macro._
-```
-@generate {<expression body>, <substitution ranges>, <local generator opts>} <generator opts>
-@generate "{<<expression body>>, <substitution ranges>, <local generator opts>}" <generator opts>
-```
-
-Expand and evaluate parametrized expression comprehensions.
-
-!!! When using the string form, an expression body containing a comma has to be escaped by another pair of angle brackets (`<` and `>`).
-
-#### Examples
-```julia
-@generate {$a+$b, a=1:3, b=3:5, dlm=+, zip=true} eval_macros=true
-@generate "{\$a+\$b, a=1:3, b=3:5, dlm=+, zip=true}"
-a=b=c=1; @generate {$[a,b,c], dlm=+}
-a=b=c=1; @generate("{<\$[a,b,c]>, dlm=+}")
-```
-
-### `GeneratedExpressions.generate` — _Function._
-```    
-generate(body, pre_substitution; eval_module, tl_opts)
-```
-Expand and evaluate parametrized expression comprehensions.
-
-!!! Note that in expressions, `$sym` atoms have to be escaped as `:($sym)`.
-
-#### Examples
-```julia
-generate("{\$a+\$b, a=1:3, b=3:5, dlm=+, zip=true}")
-generate(:({:($a)+:($b)+:($c), a=1:3, b=3:5, dlm=+, zip=true}), Dict(:c=>2))
-```
-
-### `GeneratedExpressions.@fileval` — _Macro._
-```
-@fileval <path> <global opts> <substitutions (singleton range)>
-```
-
-Expand and evaluate parametrized expression comprehensions in a file, and evaluate the resulting expression.
-
-#### Examples
-```julia
-@fileval "file.jl" x=1 # treat contents of "file.jl" as expression (parse first, then expand)
-@fileval file_string.jl mode=string x=1 # first expand as string, then eval
-```
