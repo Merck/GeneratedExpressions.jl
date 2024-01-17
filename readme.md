@@ -26,6 +26,8 @@ This includes **[ReactiveDynamics.jl](https://github.com/Merck/ReactiveDynamics.
  
 Another package is **[AlgebraicAgents.jl](https://github.com/Merck/AlgebraicAgents.jl)**, a lightweight package to enable hierarchical, heterogeneous dynamical systems co-integration. It implements a highly scalable, fully customizable interface featuring sums and compositions of dynamical systems. In present context, we note it can be used to co-integrate a reaction network problem with, e.g., a stochastic ordinary differential problem!
 
+**[CEEDesigns.jl](https://github.com/Merck/CEEDesigns.jl)** is a decision-making framework for the cost-efficient design of experiments, with direct applications in drug research, healthcare, and various other fields. Typically, a design consists of multiple experiments. Each experiment is regarded as an option to acquire additional experimental evidence and is associated with a monetary cost and an execution time. The framework, then, aims to select experiments that balance the value of acquired information and the incurred costs.
+
 ## Features
 
 At the input is a general expression with (nested) expression comprehension atoms of the form `{<expression body>, <substitution ranges>, <local generator opts>}`. The substitution ranges yield an iterator over substitution choices; by default, this is a product over the ranges and the ranges are evaluated in a sequential order from left to right. Use `zip=true` within `<local generator opts>` to zip the iterators instead (Julia's standard zipping behavior).
@@ -49,6 +51,15 @@ julia> generate("{\$a+\$b, a=1:2, b=1:2}") |> println
 2+2
 ```
 
+```julia-repl
+julia> generate("{\$a+\$b, a=1:3, b=1:\$a}") |> println
+1+1
+2+1
+2+2
+3+1
+3+2
+3+3
+```
 
 ```julia-repl
 julia> generate("{\$a+\$b, a=1:2, b=1:2, zip=true}") |> println
